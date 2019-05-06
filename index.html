@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+    />
+    <title>Резюме для hh.ru</title>
+    <style>
+        .margin-left {
+            margin-left: 10%; /* Отступ слева */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="navbar navbar-dark bg-dark box-shadow mb-3">
+    <div class="container d-flex justify-content-between">
+        <a href="/" class="navbar-brand d-flex align-items-center">
+            <strong>hh</strong>
+        </a>
+    </div>
+</div>
+<div class="container">
+    <div id="app"></div>
+</div>
+<!-- built files will be auto injected -->
+<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+></script>
+
+
+<!--<div class="row">-->
+<div class="margin-left">
+    <div class="col-md-8">
+        <div id = "computed_props">
+            <h1>Ваше резюме</h1>
+            <h3>Контактные данные</h3>
+
+            <form>
+                <div class="form-group row">
+                    <label for="firstname" class="col-sm-2 col-form-label">Имя</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model = "firstname" id="firstname" placeholder="Имя">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lastname" class="col-sm-2 col-form-label">Фамилия</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model = "lastname" id="lastname" placeholder="Фамилия">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phone" class="col-sm-2 col-form-label">Мобильный телефон</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend2">+</span>
+                            </div>
+                            <input type="text" class="form-control" v-model = "phone" id="phone" placeholder="Мобильный телефон" input pattern=".{6,10}" required title="Введите от 6 до 10 цифр!" minlength="6" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="city" class="col-sm-2 col-form-label">Город проживания</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model = "city" id="city" placeholder="Город проживания">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="profession" class="col-sm-2 col-form-label">Профессия</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model = "profession" id="profession" placeholder="Профессия">
+                    </div>
+                </div>
+
+                <br><br/> <h3>Основная информация</h3>
+                <div class="form-group row">
+                    <label for="photolink" class="col-sm-2 col-form-label">Ссылка на фото</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model = "photolink" id="photolink" placeholder="Ссылка на фото">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model = "email" id="email" placeholder="email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="birthdate" class="col-sm-2 col-form-label">Дата рождения</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" v-model = "birthdate" id="birthdate" placeholder="Дата рождения">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="male" class="col-sm-2 col-form-label">Пол</label>
+                    <div class="col-sm-10">
+                        <input type="radio" id="male" value="Мужчина" v-model="picked">
+                        <label for="male">Мужской</label>
+                        <br>
+                        <input type="radio" id="female" value="Женщина" v-model="picked">
+                        <label for="female">Женский</label>
+                        <br>
+                    </div>
+                </div>
+                <br><br/> <h3>Образование</h3>
+                <div class="form-group row">
+                    <label for="profession" class="col-sm-2 col-form-label">Уровень</label>
+                    <div class="col-sm-10">
+                        <select v-model="selected" class="custom-select">
+                            <option disabled value="">Выберите один из вариантов:</option>
+                            <option>Среднее</option>
+                            <option>Среднее специальное</option>
+                            <option>Неоконченное высшее</option>
+                            <option>Высшее</option>
+                        </select>
+                    </div>
+                </div>
+                <div
+                        v-if="selected=='Среднее специальное' || selected=='Неоконченное высшее' || selected=='Высшее'" >
+
+                    <div class="form-group row">
+                        <label for="university" class="col-sm-2 col-form-label">Учебное заведение</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model = "university" id="university"
+                                   placeholder="Учебное заведение">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="faculty" class="col-sm-2 col-form-label">Факультет</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model = "faculty" id="faculty"
+                                   placeholder="Факультет">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="speciality" class="col-sm-2 col-form-label">Специальность</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model = "speciality" id="speciality"
+                                   placeholder="Специальность">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="endYear" class="col-sm-2 col-form-label">Год окончания</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model = "endYear" id="endYear"
+                                   placeholder="Год окончания">
+                        </div>
+                    </div>
+        </div>
+
+                <br><br/> <h3>Дополнительная информация</h3>
+                <div class="form-group row">
+                    <label for="salary" class="col-sm-2 col-form-label">Желаемая зарплата</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model = "salary" id="salary" placeholder="Желаемая зарплата">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="skills" class="col-sm-2 col-form-label">Ключевые навыки</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model = "skills" id="skills" placeholder="Ключевые навыки">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="aboutMe" class="col-sm-2 col-form-label">О себе</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" v-model = "aboutMe" id="aboutMe" placeholder="Введите несколько предложений"></textarea>
+                    </div>
+                </div>
+            <br/><br/>
+
+
+
+            </form>
+
+            <button @click="setData()" class="btn btn-info" type="submit">Применить</button>
+
+            <div v-if="showData">
+            <h2><img v-bind:src="cv_photolink" class="rounded-0 float-left myimg"></h2>
+            <h2>{{getfullname}}</h2>
+            <span v-if="picked"> {{ picked }},</span>
+            <span v-if="birthdate"> {{ getage }}, </span>
+            <span v-if="getgender">{{ getgender }}  {{ birthdate }}.</span>
+            <h4 v-if="selected">{{selected}} образование</h4>
+            <div v-if="selected != 'Среднее'">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <h6 v-if="endYear">{{endYear}}</h6>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <h5 v-if="university">{{university}}</h5>
+                        <h6 v-if="speciality">{{faculty}}, {{speciality}}</h6>
+                    </div>
+                </div>
+            </div>
+            <br/><br/> <span v-if="city">Город: {{ city }}</span>
+            <br/><br/> <span v-if="phone">Телефон: {{ phone }}</span>
+            <br/><br/> <span v-if="email">email: {{ email }}</span>
+            <h3>
+                <div class="form-row" v-if="salary">
+                    <div class="form-group col-md-6">
+                        <label for="profession">{{profession}}</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="salary">{{salary}} руб.</label>
+                    </div>
+                </div>
+            </h3>
+            <br/><br/> <span v-if="skills">Ключевые навыки: {{ skills }}</span>
+            <br/><br/> <span v-if="aboutMe">О себе: {{ aboutMe }}</span>
+
+        </div>
+        </div>
+    </div>
+</div>
+<!--</div>-->
+
+
+<script>
+    var vm = new Vue({
+        el: '#computed_props',
+        data: {
+            showData: false,
+            firstname :"",
+            lastname :"",
+            birthdate : "",
+            picked : "",
+            selected : "",
+            profession : "",
+            city : "",
+            photolink : "",
+            phone : "",
+            email : "",
+            aboutMe : "",
+            salary : "",
+            skills : "",
+            university : "",
+            faculty : "",
+            speciality : "",
+            endYear : ""
+        },
+        methods: {
+        addText: function(age) {
+            let txt;
+            let count = age % 100;
+            if (count >= 5 && count <= 20) {
+                txt = "лет";
+            } else {
+                count = count % 10;
+                if (count == 1) {
+                    txt = "год";
+                } else if (count >= 2 && count <= 4) {
+                    txt = "года";
+                } else {
+                    txt = "лет";
+                }
+            }
+            return txt;
+        },
+            setData: function() {
+            if (
+                this.firstname == "" &&
+                this.lastname == "" &&
+                this.birthdate == "" &&
+                this.picked == "" &&
+                this.selected == "" &&
+                this.profession == "" &&
+                this.city == "" &&
+                this.photolink == "" &&
+                this.phone == "" &&
+                this.email == "" &&
+                this.aboutMe == "" &&
+                this.salary == "" &&
+                this.skills == "" &&
+                this.email == "" &&
+                (this.university == "" && this.selected != "Среднее") ||
+                (this.faculty == "" && this.selected != "Среднее") ||
+                (this.speciality == "" && this.selected != "Среднее") ||
+                (this.endYear == "" && this.selected != "Среднее")
+            ) {
+                alert("Enter all fields!");
+            } else  {this.showData = true}
+        }
+        },
+        computed :{
+            getfullname : function(){
+                return this.firstname +" "+ this.lastname;
+
+            },
+            getage: function() {
+                let age = new Date().getFullYear() - this.birthdate.split("-")[0];
+                return `${age} ${this.addText(age)}`;
+            },
+            getgender: function(){
+                let gen = this.picked;
+                if (gen == "Мужчина"){
+                    sms  = "родился";
+                } else if (gen == "Женщина") {
+                    sms  = "родилась";
+                } else  {
+                    sms  = "";
+                }
+                return sms;
+            },
+            cv_photolink: function() {
+                return this.photolink;
+            },
+        }
+    })
+</script>
+</body>
+</html>
